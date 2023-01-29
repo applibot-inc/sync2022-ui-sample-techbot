@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: f1f013bb054aa485c8ac92aa1e508d92, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 187cbf10a46544a6ebdc6cfdac7015db, type: 3}
+  - {fileID: 21300000, guid: c4e3e1d067e314e8cb288ea8bf432334, type: 3}
+  - {fileID: 21300000, guid: 461bee62a2be84199967e7cf61afce60, type: 3}
+  - {fileID: 21300000, guid: d536d6828fc8545c092270f6b683d31a, type: 3}
+  - {fileID: 21300000, guid: 299b67731a7914262b75c05678265917, type: 3}
+  - {fileID: 21300000, guid: 9dbd2fe32bf0b4a0284cab91f3489562, type: 3}
+  - {fileID: 21300000, guid: 2d5376c4e1d2d4fc3bf7e318764b640c, type: 3}
+  - {fileID: 21300000, guid: 0885ecc4b457d4df3b266de35e4d8d4b, type: 3}
+  - {fileID: 21300000, guid: 538689f5f2be34ad7999847035e9d9f4, type: 3}
+  - {fileID: 21300000, guid: 056d25968986d4e7caeefb899bd46edb, type: 3}
+  - {fileID: 21300000, guid: 05810db69da1f4f4f8b1b68c6ae55f5a, type: 3}
+  - {fileID: 21300000, guid: 8864b7d6f531f4637b404d7a054b894d, type: 3}
+  - {fileID: 21300000, guid: 458415f6969004e83945eed91996ac80, type: 3}
+  - {fileID: 21300000, guid: fcbfec571967a4be08512297d5c22510, type: 3}
+  - {fileID: 21300000, guid: 69ec73f7dac814312ae1161de5698d3b, type: 3}
+  - {fileID: 21300000, guid: 74c2aa485b4444c359953e58430621f3, type: 3}
+  - {fileID: 21300000, guid: 2ec8319891ffd48af9fe25a11893a36f, type: 3}
+  - {fileID: 21300000, guid: cdacdc29025b546d2b2d8dabf4b5649a, type: 3}
+  - {fileID: 21300000, guid: f1935569186db4a17a527c5b16567657, type: 3}
+  - {fileID: 21300000, guid: ee292299e3de44c24bbdfb7f43197b22, type: 3}
+  - {fileID: 21300000, guid: 01f6fd9a65ff54fc0ade8fd7702f8643, type: 3}
+  - {fileID: 21300000, guid: a27ac5da7933e40f0823169917428d7d, type: 3}
+  - {fileID: 21300000, guid: c568ab2b055564b5a94895a77959c1d3, type: 3}
+  - {fileID: 21300000, guid: 2d4b0b4bda4f0467ea3e8267ea213baf, type: 3}
+  - {fileID: 21300000, guid: 902a1c8b4d7e94759b3300ecb3198c42, type: 3}
+  - {fileID: 21300000, guid: 92d9c5eb50db149389bc5a3e8c14482f, type: 3}
+  - {fileID: 21300000, guid: fdeb4c2c707524a7daf1a0b43eb4a7f4, type: 3}
+  - {fileID: 21300000, guid: 59d51a4c40ffa4b9ea8fd0112f1ef782, type: 3}
+  - {fileID: 21300000, guid: 36cea26cc563c480bb4a3e9a63c9fe6a, type: 3}
+  - {fileID: 21300000, guid: 7029c66c3bbbc41e3991727d41c26665, type: 3}
+  - {fileID: 21300000, guid: 1dff7f0e790454ea9a77f92f8cc4d13e, type: 3}
+  - {fileID: 21300000, guid: 186410ae9fbba45899f407674fc471ad, type: 3}
+  - {fileID: 21300000, guid: 8095734f8158f47b098ec2ad9af7367d, type: 3}
+  - {fileID: 21300000, guid: 109d1d8f281b34b39aefcfca079c6f83, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Unitychan_Hundgun1_6
+  - Unitychan_Hundgun1_1
+  - Unitychan_Hundgun4_6
+  - Unitychan_Hundgun1_4
+  - Unitychan_Hundgun1_9
+  - Unitychan_SpecialAttack_11
+  - Unitychan_SpecialAttack_20
+  - Unitychan_Hundgun2_6
+  - Unitychan_Hundgun1_3
+  - Unitychan_Hundgun3_6
+  - Unitychan_Hundgun4_8
+  - Unitychan_Hundgun1_7
+  - Unitychan_SpecialAttack_14
+  - Unitychan_Hundgun4_7
+  - Unitychan_Hundgun3_9
+  - Unitychan_Hundgun1_8
+  - Unitychan_Hundgun4_5
+  - Sign_No
+  - Unitychan_Hundgun2_9
+  - Unitychan_SpecialAttack_18
+  - Unitychan_Hundgun3_7
+  - Unitychan_Hundgun2_8
+  - Unitychan_Hundgun1_5
+  - Unitychan_SpecialAttack_8
+  - Unitychan_SpecialAttack_21
+  - Unitychan_Hundgun3_8
+  - Unitychan_SpecialAttack_22
+  - Sign_Okay
+  - Unitychan_Hundgun2_5
+  - Unitychan_Hundgun2_7
+  - Unitychan_Hundgun3_5
+  - Unitychan_SpecialAttack_19
+  - Unitychan_Hundgun1_2
+  - Unitychan_Hundgun4_9
+  m_RenderDataMap: {}
+  m_Tag: Atlas
+  m_IsVariant: 0

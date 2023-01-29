@@ -123,10 +123,8 @@ Shader "Applibot/UI/Outline"
 
             fixed4 sobel(v2f IN)
             {
-                float w = _MainTex_TexelSize.z;
-                float h = _MainTex_TexelSize.w;
-                float dx = 1 / w;
-                float dy = 1 / h;
+                float dx = _MainTex_TexelSize.x;
+                float dy = _MainTex_TexelSize.y;
                 
                 half4 c00rgba = tex2D(_MainTex, IN.texcoord + half2(-dx, -dy));
                 half c00 = luminance(c00rgba);
