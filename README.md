@@ -17,6 +17,7 @@ SYNC2022「uiもshaderで盛る ～ shaderとanimationで作るリッチなui演
 
 
 
+
 MIT License
 
 Copyright (c) 2022 Hatayama Masamichi
