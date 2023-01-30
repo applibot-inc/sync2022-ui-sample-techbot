@@ -7,14 +7,12 @@ using UnityEngine.UI;
 
 namespace Applibot
 {
-    public class SpriteVertexPositionScale : MonoBehaviour, IMaterialModifier
+    public class SpriteVertexPositionChanger : MonoBehaviour, IMaterialModifier
     {
-        [NonSerialized] private Image _image;
-        private Material _material;
-
         public float scale = 1.5f;
+        [NonSerialized] private Image _image;
+        private int _textureRectId = Shader.PropertyToID("_textureRect");
 
-        
         private void Start()
         {
             _image = GetComponent<Image>();
@@ -22,37 +20,47 @@ namespace Applibot
             // useSpriteMeshをtrueにする必要アリ
             _image.useSpriteMesh = true;
             Sprite sprite = _image.sprite;
+            if (sprite.packed)
+            {
+                // sprite atlasを使っている場合はサイズを調整
+                _image.rectTransform.sizeDelta *= scale;
+            }
+            
+            ChangeMeshScale(sprite);
+        }
+
+        private void ChangeMeshScale(Sprite sprite)
+        {
             // spriteの頂点を取得
             NativeSlice<Vector3> vertices = sprite.GetVertexAttribute<Vector3>(VertexAttribute.Position);
-            var copy = new NativeArray<Vector3>(vertices.Length, Allocator.Temp);
+            NativeArray<Vector3> copy = new NativeArray<Vector3>(vertices.Length, Allocator.Temp);
+            
             // 頂点を拡大
-            for (int j = 0, m = vertices.Length; j < m; j++)
+            for (int i = 0; i < vertices.Length; i++)
             {
-                copy[j] = vertices[j] * scale;
+                copy[i] = vertices[i] * scale;
             }
 
             sprite.SetVertexAttribute(VertexAttribute.Position, copy);
             copy.Dispose();
-
-            // sprite atlasを使っている場合はサイズを調整
-            if (sprite.packed)
-            {
-                _image.rectTransform.sizeDelta *= scale;
-            }
         }
 
         public Material GetModifiedMaterial(Material baseMaterial)
         {
-            SetMaskForScaling(baseMaterial);
+            SetAtlasInfo(baseMaterial);
             return baseMaterial;
         }
 
-        private int _textureRectId = Shader.PropertyToID("_textureRect");
-
-        private void SetMaskForScaling(Material material)
+        private void SetAtlasInfo(Material material)
         {
             if (_image == null)
             {
+                return;
+            }
+            
+            if (!_image.sprite.packed)
+            {
+                material.DisableKeyword("USE_ATLAS");
                 return;
             }
 
@@ -62,16 +70,8 @@ namespace Applibot
                 textureRect.y,
                 textureRect.width,
                 textureRect.height);
-
             material.SetVector(_textureRectId, r);
-            if (_image.sprite.packed)
-            {
-                material.EnableKeyword("USE_ATLAS");
-            }
-            else
-            {
-                material.DisableKeyword("USE_ATLAS");
-            }
+            material.EnableKeyword("USE_ATLAS");
         }
     }
 }

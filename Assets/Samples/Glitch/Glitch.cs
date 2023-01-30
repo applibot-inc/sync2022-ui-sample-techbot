@@ -32,7 +32,7 @@ namespace Applibot
         {
             if (material == null)
             {
-                material = new Material(Shader.Find("Custom/UI/KeijiroGlitch"));
+                material = new Material(Shader.Find("Custom/UI/Glitch"));
                 material.hideFlags = HideFlags.DontSave;
             }
 
@@ -47,8 +47,6 @@ namespace Applibot
             material.SetVector("_VerticalJump", vj);
 
             material.SetFloat("_HorizontalShake", _horizontalShake * 0.2f);
-
-            // var cd = new Vector2(_colorDrift * 0.04f, Time.time * 606.11f);
             material.SetFloat("_ColorDriftAmount", _colorDrift * 0.04f);
             
             material.SetColor("_ScanlineColor", _ScanlineColor);

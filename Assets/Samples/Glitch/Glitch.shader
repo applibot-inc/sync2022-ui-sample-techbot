@@ -1,6 +1,6 @@
 // Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
 
-Shader "Custom/UI/KeijiroGlitch"
+Shader "Custom/UI/Glitch"
 {
     Properties
     {
@@ -57,7 +57,7 @@ Shader "Custom/UI/KeijiroGlitch"
             Name "Default"
             CGPROGRAM
             #pragma vertex vert
-            #pragma fragment keijiroFrag
+            #pragma fragment frag
             #pragma target 2.0
 
             #include "UnityCG.cginc"
@@ -135,13 +135,11 @@ Shader "Custom/UI/KeijiroGlitch"
                 return OUT;
             }
 
-            float4 keijiroFrag(v2f IN): SV_Target
+            half4 frag(v2f IN): SV_Target
             {
-                float u = IN.texcoord.x;
-                float v = IN.texcoord.y;
-                // u = saturate(u);
-                // v = saturate(v);
-
+                const float u = IN.texcoord.x;
+                const float v = IN.texcoord.y;
+                
                 // Scan line jitter
                 // jitterとは、ゆらぎの意味
                 // -1 から 1の値を取るランダムな値を取得
@@ -150,7 +148,7 @@ Shader "Custom/UI/KeijiroGlitch"
                 // Step - 0か１を返す。第一引数の値が、第２引数以上かどうか。
                 // _ScanLineJitter.yがabs(jitter)より小さかったら0、そうでないなら1を返す
 
-                // _ScanLineJitter.xはどれだけズラすかの値
+                // _ScanLineJitter.xの値だけズレる
                 // _ScanLineJitter.yはthreshold
                 // jitterが-1なら左にずれ、1なら右にずれる。
                 // ずれるかどうかの判断はstepで行っている。
@@ -175,10 +173,10 @@ Shader "Custom/UI/KeijiroGlitch"
                 float u1 = saturate(u + jitter + shake);
                 float u2 = saturate(u + jitter + shake + drift);
                 float vv = saturate(jump);
-                float4 src1 = tex2D(_MainTex, frac(float2(u1, vv)));
-                float4 src2 = tex2D(_MainTex, frac(float2(u2, vv)));
+                half4 src1 = tex2D(_MainTex, frac(float2(u1, vv)));
+                half4 src2 = tex2D(_MainTex, frac(float2(u2, vv)));
                 
-                float4 output = float4(src1.r, src2.g, src1.b, src1.a);
+                half4 output = half4(src1.r, src2.g, src1.b, src1.a);
 
                 #ifdef UNITY_UI_CLIP_RECT
                 half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(IN.mask.xy)) * IN.mask.zw);
@@ -190,18 +188,18 @@ Shader "Custom/UI/KeijiroGlitch"
                 #endif
                 
                 // 0 〜 1の値を取る波
-                float scanline = sin(IN.texcoord.y * _ScreenParams.y / _ScanlineSize + _Time.x * 400) * 0.5 + 0.5;
+                float scanline = sin(v * _ScreenParams.y / _ScanlineSize + _Time.x * 400) * 0.5 + 0.5;
                 // scanline = smoothstep(0.8, 1, scanline);
                 scanline *= output.a;
                 // return float4(scanline, scanline, scanline, 1);
                 // output -= saturate(scanline);
                 output = lerp(output, output * _ScanlineColor, scanline);
-
+                
                 // return color;
                 // output.rgb *=  output.a;
                 output.rgb *= _ColorStrength;
 
-                return float4(output.r, output.g, output.b, output.a * IN.color.a);
+                return half4(output.r, output.g, output.b, output.a * IN.color.a);
             }
             
             ENDCG

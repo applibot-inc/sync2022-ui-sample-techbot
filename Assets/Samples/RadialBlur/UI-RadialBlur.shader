@@ -72,6 +72,8 @@ Shader "Custom/UI/RadialBlur"
             float _BlurRadius;
             float4 _MainTex_TexelSize;
 
+            float _scaleFactor;
+
             struct appdata
             {
                 float4 vertex : POSITION;
@@ -103,21 +105,13 @@ Shader "Custom/UI/RadialBlur"
 
             fixed4 frag(v2f i):COLOR
             {
-                float2 center;
+                float2 center = float2(0.5, 0.5);
                 #if defined(USE_ATLAS)
-                    center = TransformUV(float2(0.5, 0.5), _MainTex_TexelSize.zw, _textureRect);
-                #else
-                    center = float2(0.5, 0.5);
+                    center = TransformUV(center, _MainTex_TexelSize.zw, _textureRect);
                 #endif
 
-                float2 direction = (center - i.uv) * _MainTex_TexelSize.xy * _BlurRadius;
-                #if defined(USE_ATLAS)
-                    float2 scale = float2(_MainTex_TexelSize.z / _textureRect.z, _MainTex_TexelSize.w / _textureRect.w);
-                    direction *= scale;
-                #endif
-
+                float2 direction = (center - i.uv) * _BlurRadius * _scaleFactor;
                 fixed4 resultColor = fixed4(0, 0, 0, 0);
-
                 float2 uv = i.uv;
                 for (int index = 0; index < _SampleCount; ++index)
                 {

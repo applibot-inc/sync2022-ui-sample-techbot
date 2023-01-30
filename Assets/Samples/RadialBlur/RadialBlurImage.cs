@@ -7,7 +7,7 @@ namespace Applibot
         public static readonly string SHADER_NAME = "Custom/UI/RadialBlur";
 
         public float BlurRadius = 30f;
-        public int SampleCount = 10;
+        [Range(0, 30)] public int SampleCount = 10;
 
         private Shader _shader;
         private int _BlurRadiusId = Shader.PropertyToID("_BlurRadius");
@@ -20,7 +20,6 @@ namespace Applibot
                 Shader shader;
                 shader = Shader.Find(SHADER_NAME);
                 material = new Material(shader);
-                material.CopyPropertiesFromMaterial(baseMaterial);
             }
             
             material.SetFloat(_BlurRadiusId, BlurRadius);

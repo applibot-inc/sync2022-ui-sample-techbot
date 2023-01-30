@@ -372,8 +372,8 @@ GameObject:
   - component: {fileID: 881809942}
   - component: {fileID: 881809944}
   - component: {fileID: 881809943}
-  - component: {fileID: 881809945}
   - component: {fileID: 881809946}
+  - component: {fileID: 881809945}
   - component: {fileID: 881809947}
   m_Layer: 5
   m_Name: OK
@@ -606,8 +606,8 @@ GameObject:
   - component: {fileID: 1773607476}
   - component: {fileID: 1773607478}
   - component: {fileID: 1773607477}
-  - component: {fileID: 1773607479}
   - component: {fileID: 1773607480}
+  - component: {fileID: 1773607479}
   - component: {fileID: 1773607481}
   m_Layer: 5
   m_Name: NG

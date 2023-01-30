@@ -67,9 +67,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 69ec73f7dac814312ae1161de5698d3b, type: 3}
   - {fileID: 21300000, guid: 74c2aa485b4444c359953e58430621f3, type: 3}
   - {fileID: 21300000, guid: 2ec8319891ffd48af9fe25a11893a36f, type: 3}
-  - {fileID: 21300000, guid: cdacdc29025b546d2b2d8dabf4b5649a, type: 3}
   - {fileID: 21300000, guid: f1935569186db4a17a527c5b16567657, type: 3}
   - {fileID: 21300000, guid: ee292299e3de44c24bbdfb7f43197b22, type: 3}
+  - {fileID: 21300000, guid: 0356333a5d6264aa58b4c968681db23b, type: 3}
   - {fileID: 21300000, guid: 01f6fd9a65ff54fc0ade8fd7702f8643, type: 3}
   - {fileID: 21300000, guid: a27ac5da7933e40f0823169917428d7d, type: 3}
   - {fileID: 21300000, guid: c568ab2b055564b5a94895a77959c1d3, type: 3}
@@ -102,9 +102,9 @@ SpriteAtlas:
   - Unitychan_Hundgun3_9
   - Unitychan_Hundgun1_8
   - Unitychan_Hundgun4_5
-  - Sign_No
   - Unitychan_Hundgun2_9
   - Unitychan_SpecialAttack_18
+  - Sign_No
   - Unitychan_Hundgun3_7
   - Unitychan_Hundgun2_8
   - Unitychan_Hundgun1_5
