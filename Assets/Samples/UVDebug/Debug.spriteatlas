@@ -51,12 +51,16 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: dbfdfa4191f9f41b494c2a2dba5abbea, type: 3}
+  - {fileID: 21300000, guid: 288402c29553a403ea263daf1185b4c7, type: 3}
   - {fileID: 21300000, guid: 1d1d6be20cf824c3ea0e4940dde2b54e, type: 3}
   - {fileID: 21300000, guid: 7ed8f075e07b9484c9f5739b97d674e5, type: 3}
+  - {fileID: 21300000, guid: b9110a1aeb9f84c589ed1b82c27d4534, type: 3}
   m_PackedSpriteNamesToIndex:
   - CustomUVChecker3
+  - circle-16-9
   - CustomUVChecker2
   - CustomUVChecker1
+  - CustomUVChecker1_yoko
   m_RenderDataMap: {}
   m_Tag: Debug
   m_IsVariant: 0
