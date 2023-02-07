@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3d6f8d0d6a4ff8a1f6516270bbd86c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlurRadius: 125.8
+  BlurRadius: 83.2
   SampleCount: 10
 --- !u!114 &1809506534
 MonoBehaviour:

@@ -89,6 +89,8 @@ Shader "Applibot/UI/Outline"
             float _UIMaskSoftnessX;
             float _UIMaskSoftnessY;
 
+            float2 _scaleFactor;
+
             // custom properties
             float4 _MainTex_TexelSize;
             float4 _OutlineColor;
@@ -123,8 +125,8 @@ Shader "Applibot/UI/Outline"
 
             fixed4 sobel(v2f IN)
             {
-                float dx = _MainTex_TexelSize.x;
-                float dy = _MainTex_TexelSize.y;
+                float dx = _MainTex_TexelSize.x * _scaleFactor.x;
+                float dy = _MainTex_TexelSize.y * _scaleFactor.y;
                 
                 half4 c00rgba = tex2D(_MainTex, IN.texcoord + half2(-dx, -dy));
                 half c00 = luminance(c00rgba);

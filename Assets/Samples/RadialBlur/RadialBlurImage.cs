@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Applibot
 {
@@ -24,6 +25,14 @@ namespace Applibot
             
             material.SetFloat(_BlurRadiusId, BlurRadius);
             material.SetInt(_SampleCountId, SampleCount);
+            
+            float scale = 0.0005f;
+            if (canvasScaler != null)
+            {
+                Vector2 texureSize = canvasScaler.referenceResolution;
+                scale = 1f / Mathf.Max(texureSize.x, texureSize.y);
+            }
+            material.SetFloat("_scaleFactor", scale);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Applibot
         protected Material material;
         private CanvasScaler _canvasScaler;
 
-        private CanvasScaler canvasScaler
+        protected CanvasScaler canvasScaler
         {
             get
             {
@@ -52,14 +52,6 @@ namespace Applibot
             }
 
             UpdateMaterial(baseMaterial);
-            float scale = 0.0005f;
-            if (canvasScaler != null)
-            {
-                Vector2 res = canvasScaler.referenceResolution;
-                scale = 1f / Mathf.Max(res.x, res.y);
-            }
-
-            material.SetFloat("_scaleFactor", scale);
             return material;
         }
 
