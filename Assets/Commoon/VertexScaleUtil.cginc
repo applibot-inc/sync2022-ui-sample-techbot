@@ -34,18 +34,20 @@ float remap(float value, float inputMin, float inputMax, float outputMin, float 
     return (value - inputMin) * ((outputMax - outputMin) / (inputMax - inputMin)) + outputMin;
 }
 
-float2 GetLocalUV(float2 uv, float2 allasSize, float4 texSize)
+// textureRect.xy ... atlas内でのパーツのxy座標
+// textureRect.zw ... パーツの幅、高さ
+float2 GetLocalUV(float2 uv, float2 allasSize, float4 textureRect)
 {
     float u = uv.x;
     float width = allasSize.x;
-    float minX = texSize.x / width;
-    float maxX = (texSize.x + texSize.z) / width;
+    float minX = textureRect.x / width;
+    float maxX = (textureRect.x + textureRect.z) / width;
     u = remap(u, minX, maxX, 0, 1);
 
     float v = uv.y;
     float height = allasSize.y;
-    float minY = texSize.y / height;
-    float maxY = (texSize.y + texSize.w) / height;
+    float minY = textureRect.y / height;
+    float maxY = (textureRect.y + textureRect.w) / height;
     v = remap(v, minY, maxY, 0, 1);
 
     float2 localUv = float2(u, v);

@@ -57,7 +57,7 @@ Shader "Custom/UI/RadialBlur"
             #pragma multi_compile __ UNITY_UI_ALPHACLIP
 
             #include "UnityCG.cginc"
-            #include "VertexScaleUtil.cginc"
+            #include "../../Commoon/VertexScaleUtil.cginc"
 
             int _SampleCount;
             float _Strength;
@@ -107,6 +107,7 @@ Shader "Custom/UI/RadialBlur"
             {
                 float2 center = float2(0.5, 0.5);
                 #if defined(USE_ATLAS)
+                    // 中心(0.5, 0.5)の座標が、atlas内ではどこに変化するのか調べる
                     center = TransformUV(center, _MainTex_TexelSize.zw, _textureRect);
                 #endif
 

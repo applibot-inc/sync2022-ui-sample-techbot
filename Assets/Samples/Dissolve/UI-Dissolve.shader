@@ -59,10 +59,12 @@ Shader "Applibot/UI/Dissolve"
 
             #include "UnityCG.cginc"
             #include "UnityUI.cginc"
+            #include "../../Commoon/VertexScaleUtil.cginc"
 
             #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
             #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
-
+            #pragma multi_compile_local _ USE_ATLAS
+            
             struct appdata_t
             {
                 float4 vertex : POSITION;
@@ -97,6 +99,8 @@ Shader "Applibot/UI/Dissolve"
             float4 _Scroll;
             float _Distortion;
 
+            float4 _MainTex_TexelSize;
+
             v2f vert(appdata_t v)
             {
                 v2f OUT;
@@ -119,12 +123,6 @@ Shader "Applibot/UI/Dissolve"
                 return OUT;
             }
 
-
-            float remap(float value, float inputMin, float inputMax, float outputMin, float outputMax)
-            {
-                return (value - inputMin) * ((outputMax - outputMin) / (inputMax - inputMin)) + outputMin;
-            }
-
             fixed4 frag(v2f IN) : SV_Target
             {
                 #ifdef UNITY_UI_CLIP_RECT
@@ -136,23 +134,33 @@ Shader "Applibot/UI/Dissolve"
                 clip (color.a - 0.001);
                 #endif
 
-                float2 uv = IN.texcoord;
+                float2 uvForDissolveTex = IN.texcoord;
+                #if defined(USE_ATLAS)
+                    // atlasを使っている場合、0.2 〜 0.6 のような中途半端なuv値が渡ってくる
+                    // それを0 〜 1の正規化された情報に変形する
+                    uvForDissolveTex = GetLocalUV(IN.texcoord, _MainTex_TexelSize.zw, _textureRect);
+                #endif
+                
                 // textureの下部を0とし、0から_yAmountまでの部分を表示します
                 // _yRangeで指定された分、なだらかに変化します
                 _YAmount = remap(_YAmount, 0, 1, -_YRange, 1 + _YRange);
                 float fromY = _YAmount - _YRange;
                 // yがfromYの時点から徐々に表示され、yが_yAmountのときに1を取るように変換
-                float alphaY = remap(uv.y, fromY, _YAmount, 0, 1);
+                float alphaY = remap(uvForDissolveTex.y, fromY, _YAmount, 0, 1);
                 alphaY = saturate(alphaY);
 
                 // dissovle用 textureスクロールのため
-                uv += _Scroll * _Time.x;
-                half dissolveTexAlpha = tex2D(_DissolveTex, uv).r;
+                uvForDissolveTex += _Scroll * _Time.x;
+                half dissolveTexAlpha = tex2D(_DissolveTex, uvForDissolveTex).r;
                 half reverseAlphaY = 1 - alphaY;
 
                 // y方向境界部分の歪み用
-                half2 uvDiff = half2(0, reverseAlphaY * dissolveTexAlpha * _Distortion);
-                half4 color = IN.color * (tex2D(_MainTex, IN.texcoord + uvDiff) + _TextureSampleAdd);
+                half2 uvDiff = IN.texcoord + half2(0, reverseAlphaY * dissolveTexAlpha * _Distortion);
+                half4 color = IN.color * (tex2D(_MainTex, uvDiff) + _TextureSampleAdd);
+
+                #if defined(USE_ATLAS)
+                    color *= IsInner(uvDiff, _MainTex_TexelSize.zw, _textureRect);
+                #endif
                 
                 // 適用度がy方向に反映されるよう、y方向の情報と合成
                 dissolveTexAlpha *= alphaY;
