@@ -30,3 +30,5 @@ Thumbs.db
 # Rider
 .idea/
 *.sln.DotSettings
+
+_Sandbox*

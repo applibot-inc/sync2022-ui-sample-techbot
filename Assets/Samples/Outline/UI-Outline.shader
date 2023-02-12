@@ -9,6 +9,8 @@ Shader "Applibot/UI/Outline"
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+        _scale ("scale", Float) = 1
+        
         _Color ("Tint", Color) = (1,1,1,1)
 
         _StencilComp ("Stencil Comparison", Float) = 8
@@ -125,6 +127,7 @@ Shader "Applibot/UI/Outline"
 
             fixed4 sobel(v2f IN)
             {
+                // uv座標での1pxは_MainTex_TexelSize.xy。uv atlasであってもこの単位は変わらない
                 float dx = _MainTex_TexelSize.x * _scaleFactor.x;
                 float dy = _MainTex_TexelSize.y * _scaleFactor.y;
                 

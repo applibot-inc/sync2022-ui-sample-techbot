@@ -26,18 +26,17 @@ namespace Applibot
             {
                 Shader shader = Shader.Find("Applibot/UI/Outline");
                 material = new Material(shader);
-                material.hideFlags = HideFlags.HideAndDontSave;
             }
 
             material.SetColor(_OutlineColor, _outlineColor);
             material.SetInt(_SrcFactor, (int)BlendMode.SrcAlpha);
             material.SetInt(_DstFactor, (int)BlendMode.OneMinusSrcAlpha);
-            
+
             if (canvasScaler != null)
             {
                 Vector2 canvasResolution = canvasScaler.referenceResolution;
                 Vector2 texureSize = Vector2.one;
-                
+
                 if (_image != null && _image.sprite.packed)
                 {
                     // sprite atlasが使われている場合
@@ -49,17 +48,18 @@ namespace Applibot
                     Texture mainTexture = graphic.mainTexture;
                     texureSize = new Vector2(mainTexture.width, mainTexture.height);
                 }
-                
+
+                // texture sizeによって先の太さに差が出ないよう、canvasに対しての比率をshaderで掛け合わせる
                 float x = texureSize.x / canvasResolution.x;
                 float y = texureSize.y / canvasResolution.y;
-                material.SetVector("_scaleFactor", new Vector2(x, y));
+                material.SetVector("_scaleFactor", new Vector4(x, y));
             }
         }
 
         private void Awake()
         {
             _image = graphic as Image;
-            
+
             if (Application.isPlaying == false)
             {
                 return;
