@@ -1,4 +1,3 @@
-[Unity SYNC2022](https://events.unity3d.jp/sync/)「uiもshaderで盛る ～ shaderとanimationで作るリッチなui演出」のサンプルファイルです。
 Sample file of [Unity SYNC2022](https://events.unity3d.jp/sync/) "Rich UI effects created with shader and animation"
 
 
