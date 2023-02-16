@@ -1,4 +1,4 @@
-Sample file of [Unity SYNC2022](https://events.unity3d.jp/sync/) "Rich UI effects created with shader and animation"
+Sample file of [Unity SYNC2022](https://events.unity3d.jp/sync/) ["Rich UI effects created with shader and animation"](https://events.unity3d.jp/sync/session/20/)
 
 
 - presentation: https://www.docswell.com/s/UnityJapan/ZQDW75-sync2022_day2_track2_1920
