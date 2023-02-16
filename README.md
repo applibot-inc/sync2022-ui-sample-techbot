@@ -5,7 +5,7 @@ Sample file of [Unity SYNC2022](https://events.unity3d.jp/sync/) ["Rich UI effec
 - youtube: https://www.youtube.com/watch?v=T_dYC4LvFJk
 
 
-1. Reproduction of blending mode
+1. Reproduction of blending modes
 ![スクリーンショット 2022-12-15 21 45 14](https://user-images.githubusercontent.com/69620724/208657495-6151b093-9743-4a37-81ce-7232937812ac.png)
 
 
