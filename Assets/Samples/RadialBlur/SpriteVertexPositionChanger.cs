@@ -7,15 +7,19 @@ using UnityEngine.UI;
 
 namespace Applibot
 {
-    public class SpriteVertexPositionChanger : MonoBehaviour, IMaterialModifier
+    public class SpriteVertexPositionChanger : MonoBehaviour
     {
         public float scale = 1.5f;
         [NonSerialized] private Image _image;
-        private int _textureRectId = Shader.PropertyToID("_textureRect");
 
         private void Start()
         {
             _image = GetComponent<Image>();
+            if (_image == null)
+            {
+                Debug.LogError("Imageコンポーネントが必要です");
+                return;
+            }
 
             // useSpriteMeshをtrueにする必要アリ
             _image.useSpriteMesh = true;
@@ -43,35 +47,6 @@ namespace Applibot
 
             sprite.SetVertexAttribute(VertexAttribute.Position, copy);
             copy.Dispose();
-        }
-
-        public Material GetModifiedMaterial(Material baseMaterial)
-        {
-            SetAtlasInfo(baseMaterial);
-            return baseMaterial;
-        }
-
-        private void SetAtlasInfo(Material material)
-        {
-            if (_image == null)
-            {
-                return;
-            }
-            
-            if (!_image.sprite.packed)
-            {
-                material.DisableKeyword("USE_ATLAS");
-                return;
-            }
-
-            Rect textureRect = _image.sprite.textureRect;
-            Vector4 r = new Vector4(
-                textureRect.x,
-                textureRect.y,
-                textureRect.width,
-                textureRect.height);
-            material.SetVector(_textureRectId, r);
-            material.EnableKeyword("USE_ATLAS");
         }
     }
 }

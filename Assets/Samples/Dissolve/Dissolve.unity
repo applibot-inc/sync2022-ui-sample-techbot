@@ -804,7 +804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dissovleTex: {fileID: 2800000, guid: 85969932204a54412a09aefecd35ff61, type: 3}
   _glowColor: {r: 7.4716983, g: 0.60992265, b: 0.19559415, a: 0}
-  _yAmount: 0.5
+  _yAmount: 0.48
   _yRange: 0.66
   _dissolveRange: 1
   _distortion: 0.51

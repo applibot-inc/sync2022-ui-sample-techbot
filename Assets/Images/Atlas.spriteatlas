@@ -56,8 +56,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 59d51a4c40ffa4b9ea8fd0112f1ef782, type: 3}
   - {fileID: 21300000, guid: 78ae0bbe34cb24f39be4610ced4c9490, type: 3}
   m_PackedSpriteNamesToIndex:
-  - unity-uni2
-  - unity-uni
+  - cindy
+  - unity_uni
   - Sign_No
   - Sign_Okay
   - uni

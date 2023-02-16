@@ -173,7 +173,7 @@ Shader "Applibot/UI/Outline"
             }
            
 
-            fixed4 frag(v2f IN) : SV_Target
+            half4 frag(v2f IN) : SV_Target
             {
                 half4 color = sobel(IN);
 
