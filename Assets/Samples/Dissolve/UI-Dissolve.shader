@@ -46,7 +46,7 @@ Shader "Applibot/UI/Dissolve"
         Lighting Off
         ZWrite Off
         ZTest [unity_GUIZTestMode]
-        Blend One OneMinusSrcAlpha
+        Blend SrcAlpha OneMinusSrcAlpha
         ColorMask [_ColorMask]
 
         Pass
@@ -138,7 +138,7 @@ Shader "Applibot/UI/Dissolve"
                 #if defined(USE_ATLAS)
                     // atlasを使っている場合、0.2 〜 0.6 のような中途半端なuv値が渡ってくる
                     // それを0 〜 1の正規化された情報に変形する
-                    uvForDissolveTex = GetLocalUV(IN.texcoord, _MainTex_TexelSize.zw, _textureRect);
+                    uvForDissolveTex = AtlasUVtoMeshUV(IN.texcoord, _MainTex_TexelSize.zw, _textureRect);
                 #endif
                 
                 // textureの下部を0とし、0から_yAmountまでの部分を表示します
@@ -156,7 +156,7 @@ Shader "Applibot/UI/Dissolve"
 
                 // y方向境界部分の歪み用
                 half2 uvDiff = IN.texcoord + half2(0, reverseAlphaY * dissolveTexAlpha * _Distortion);
-                half4 color = IN.color * (tex2D(_MainTex, uvDiff) + _TextureSampleAdd);
+                half4 color = IN.color * tex2D(_MainTex, uvDiff);
 
                 #if defined(USE_ATLAS)
                     color *= IsInner(uvDiff, _MainTex_TexelSize.zw, _textureRect);
@@ -172,10 +172,9 @@ Shader "Applibot/UI/Dissolve"
                 
                 if (dissolveTexAlpha < reverseAlphaY)
                 {
-                    color.a = 0;
+                    color = 0;
                 }
                 
-                color.rgb *= color.a;
                 return color;
             }
             ENDCG

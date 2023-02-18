@@ -143,7 +143,6 @@ Shader "Custom/UI/Glitch"
                 // Scan line jitter
                 // jitterとは、ゆらぎの意味
                 // -1 から 1の値を取るランダムな値を取得
-                // float jitter = nrand(v, _Time.x) * 2 - 1;
                 float jitter = nrand(floor(v * _JitterSize), _Time.x) * 2 - 1;
                 // Step - 0か１を返す。第一引数の値が、第２引数以上かどうか。
                 // _ScanLineJitter.yがabs(jitter)より小さかったら0、そうでないなら1を返す
@@ -163,19 +162,12 @@ Shader "Custom/UI/Glitch"
                 // Color drift
                 // _ColorDriftTime = _Time.x * 500;
                 float drift = sin(jump + _ColorDriftTime) * _ColorDriftAmount;
-                // float colorDriftFactor = nrand(_ColorDriftTime, _ColorDriftTime);
-                // float drift = colorDriftFactor * _ColorDriftAmount * step(colorDriftFactor, 0.5);
-
-                // frac - 小数値の小数部分を返す
-                // float4 src1 = tex2D(_MainTex, saturate(frac(float2(u + jitter + shake), jump))));
-                // float4 src2 = tex2D(_MainTex, saturate(frac(float2(u + jitter + shake + drift), jump)));
 
                 float u1 = saturate(u + jitter + shake);
                 float u2 = saturate(u + jitter + shake + drift);
                 float vv = saturate(jump);
                 half4 src1 = tex2D(_MainTex, frac(float2(u1, vv)));
                 half4 src2 = tex2D(_MainTex, frac(float2(u2, vv)));
-                
                 half4 output = half4(src1.r, src2.g, src1.b, src1.a);
 
                 #ifdef UNITY_UI_CLIP_RECT
@@ -189,16 +181,9 @@ Shader "Custom/UI/Glitch"
                 
                 // 0 〜 1の値を取る波
                 float scanline = sin(v * _ScreenParams.y / _ScanlineSize + _Time.x * 400) * 0.5 + 0.5;
-                // scanline = smoothstep(0.8, 1, scanline);
                 scanline *= output.a;
-                // return float4(scanline, scanline, scanline, 1);
-                // output -= saturate(scanline);
                 output = lerp(output, output * _ScanlineColor, scanline);
-                
-                // return color;
-                // output.rgb *=  output.a;
                 output.rgb *= _ColorStrength;
-
                 return half4(output.r, output.g, output.b, output.a * IN.color.a);
             }
             

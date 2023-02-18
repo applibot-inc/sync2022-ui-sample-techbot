@@ -108,7 +108,7 @@ Shader "Custom/UI/RadialBlur"
                 float2 center = float2(0.5, 0.5);
                 #if defined(USE_ATLAS)
                     // 中心(0.5, 0.5)の座標が、atlas内ではどこに変化するのか調べる
-                    center = TransformUV(center, _MainTex_TexelSize.zw, _textureRect);
+                    center = MeshUVtoAtlasUV(center, _MainTex_TexelSize.zw, _textureRect);
                 #endif
 
                 float2 direction = (center - i.uv) * _BlurRadius * _scaleFactor;

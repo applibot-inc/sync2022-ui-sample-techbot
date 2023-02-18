@@ -36,7 +36,7 @@ float remap(float value, float inputMin, float inputMax, float outputMin, float 
 
 // textureRect.xy ... atlas内でのパーツのxy座標
 // textureRect.zw ... パーツの幅、高さ
-float2 GetLocalUV(float2 uv, float2 allasSize, float4 textureRect)
+float2 AtlasUVtoMeshUV(float2 uv, float2 allasSize, float4 textureRect)
 {
     float u = uv.x;
     float width = allasSize.x;
@@ -57,7 +57,7 @@ float2 GetLocalUV(float2 uv, float2 allasSize, float4 textureRect)
 // meshのuv座標が、atlas内のパーツではどの部分にあたるのか調べる
 // textureRect.xy ... atlas内でのパーツのxy座標
 // textureRect.zw ... パーツの幅、高さ
-float2 TransformUV(float2 localUV, float2 allasSize, float4 textureRect)
+float2 MeshUVtoAtlasUV(float2 localUV, float2 allasSize, float4 textureRect)
 {
     float width = textureRect.z;
     // atlas内のpixel座標を求める
