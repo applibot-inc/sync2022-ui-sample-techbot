@@ -6,7 +6,7 @@ Sample file of [Unity SYNC2022](https://events.unity3d.jp/sync/) ["Rich UI effec
 
 
 1. Reproduction of blending modes
-![スクリーンショット 2022-12-15 21 45 14](https://user-images.githubusercontent.com/69620724/208657495-6151b093-9743-4a37-81ce-7232937812ac.png)
+<img width="1437" alt="スクリーンショット 2023-02-18 23 10 33" src="https://user-images.githubusercontent.com/69620724/219870465-7a7aca2b-b28c-4cfd-9ed5-25423ae51d4d.png">
 
 
 2. Outline with edge detection filter
