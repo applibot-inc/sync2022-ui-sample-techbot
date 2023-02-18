@@ -1,3 +1,7 @@
+// Copyright (C) 2022 Hatayama Masamichi
+// Released under the MIT license
+// https://opensource.org/licenses/mit-license.php
+
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -35,11 +39,8 @@ namespace Applibot
 
         private void ChangeMeshScale(Sprite sprite)
         {
-            // spriteの頂点を取得
             NativeSlice<Vector3> vertices = sprite.GetVertexAttribute<Vector3>(VertexAttribute.Position);
             NativeArray<Vector3> copy = new NativeArray<Vector3>(vertices.Length, Allocator.Temp);
-            
-            // 頂点を拡大
             for (int i = 0; i < vertices.Length; i++)
             {
                 copy[i] = vertices[i] * scale;

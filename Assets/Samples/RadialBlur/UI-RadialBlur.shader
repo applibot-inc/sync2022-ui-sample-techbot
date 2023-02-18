@@ -1,6 +1,9 @@
+// Copyright (C) 2022 Hatayama Masamichi
+// Released under the MIT license
+// https://opensource.org/licenses/mit-license.php
+
 Shader "Custom/UI/RadialBlur"
 {
-    
     Properties
     {
         _SampleCount ("SampleCount", Range(4.0, 16.0)) = 8.0

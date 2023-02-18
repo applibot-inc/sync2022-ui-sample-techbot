@@ -1,3 +1,7 @@
+// Copyright (C) 2022 Hatayama Masamichi
+// Released under the MIT license
+// https://opensource.org/licenses/mit-license.php
+
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
