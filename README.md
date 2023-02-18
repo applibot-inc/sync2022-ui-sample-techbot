@@ -4,7 +4,8 @@ SYNC2022「uiもshaderで盛る ～ shaderとanimationで作るリッチなui演
 - 資料: https://www.docswell.com/s/UnityJapan/ZQDW75-sync2022_day2_track2_1920
 
 1. 描画モードの再現
-![スクリーンショット 2022-12-15 21 45 14](https://user-images.githubusercontent.com/69620724/208657495-6151b093-9743-4a37-81ce-7232937812ac.png)
+<img width="1437" alt="スクリーンショット 2023-02-18 23 10 33" src="https://user-images.githubusercontent.com/69620724/219870417-4435be29-a645-4ab4-9049-6ce3ec4a245d.png">
+
 
 
 2. エッジ検出フィルタを使ったアウトライン
