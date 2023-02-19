@@ -11,9 +11,10 @@ Sample file of [Unity SYNC2022](https://events.unity3d.jp/sync/) ["Rich UI effec
 
 3. Dissolve![スクリーンショット 2022-12-20 20 48 34](https://user-images.githubusercontent.com/69620724/208661156-8902344c-429a-4ce1-902f-0f9d6052fbe3.png)
 
-4. Glitch <img width="957" alt="スクリーンショット 2023-02-16 13 03 48" src="https://user-images.githubusercontent.com/69620724/219265717-ada6722c-10b1-4ffd-8bc1-1c34ee216e97.png">
+4. Glitch <img width="957" alt="スクリーンショット 2023-02-16 13 03 48" src="https://user-images.githubusercontent.com/69620724/219870970-e64e75b3-ea5a-4f0c-8932-1acad2a21561.png">
 
-5. Radial Blur <img width="958" alt="スクリーンショット 2023-02-16 12 53 24" src="https://user-images.githubusercontent.com/69620724/219264407-eeea49b9-4502-4364-963e-a1a61c7ff3e8.png">
+
+5. Radial Blur <img width="958" alt="スクリーンショット 2023-02-16 12 53 24" src="https://user-images.githubusercontent.com/69620724/219870992-78a4ec46-742a-4acb-815c-ba7bac32c600.png">
 
 
 
