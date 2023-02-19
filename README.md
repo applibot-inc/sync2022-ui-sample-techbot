@@ -1,19 +1,20 @@
-SYNC2022「uiもshaderで盛る ～ shaderとanimationで作るリッチなui演出」のサンプルファイルです。
+Sample file of [Unity SYNC2022](https://events.unity3d.jp/sync/) ["Rich UI effects created with shader and animation"](https://events.unity3d.jp/sync/session/20/)
 
+
+- presentation: https://www.docswell.com/s/UnityJapan/ZQDW75-sync2022_day2_track2_1920
 - youtube: https://www.youtube.com/watch?v=T_dYC4LvFJk
-- 資料: https://www.docswell.com/s/UnityJapan/ZQDW75-sync2022_day2_track2_1920
-
-1. 描画モードの再現
-![スクリーンショット 2022-12-15 21 45 14](https://user-images.githubusercontent.com/69620724/208657495-6151b093-9743-4a37-81ce-7232937812ac.png)
 
 
-2. エッジ検出フィルタを使ったアウトライン
-![outline-full-hd](https://user-images.githubusercontent.com/69620724/208657467-622704d0-12e0-4b82-adcd-100f26baad87.png)
+1. Reproduction of blending modes <img width="1436" alt="スクリーンショット 2023-02-18 23 14 14" src="https://user-images.githubusercontent.com/69620724/219870571-7da45b71-5eae-4460-b219-ac992b47ddb7.png">
+
+2. Outline with edge detection filter ![outline-full-hd](https://user-images.githubusercontent.com/69620724/208657467-622704d0-12e0-4b82-adcd-100f26baad87.png)
+
+3. Dissolve![スクリーンショット 2022-12-20 20 48 34](https://user-images.githubusercontent.com/69620724/208661156-8902344c-429a-4ce1-902f-0f9d6052fbe3.png)
+
+4. Glitch <img width="957" alt="スクリーンショット 2023-02-16 13 03 48" src="https://user-images.githubusercontent.com/69620724/219870970-e64e75b3-ea5a-4f0c-8932-1acad2a21561.png">
 
 
-3. ディゾルブ![スクリーンショット 2022-12-20 20 48 34](https://user-images.githubusercontent.com/69620724/208661156-8902344c-429a-4ce1-902f-0f9d6052fbe3.png)
-
-
+5. Radial Blur <img width="958" alt="スクリーンショット 2023-02-16 12 53 24" src="https://user-images.githubusercontent.com/69620724/219870992-78a4ec46-742a-4acb-815c-ba7bac32c600.png">
 
 
 

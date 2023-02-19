@@ -611,8 +611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a124f56c8afdf4c20abe8da367edac91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _outlineColor: {r: 11.181761, g: 0, b: 1.5221245, a: 1}
-  _isStatic: 1
+  _outlineColor: {r: 11.984314, g: 0, b: 1.6313726, a: 1}
+  _isStatic: 0
 --- !u!114 &353819124
 MonoBehaviour:
   m_ObjectHideFlags: 0

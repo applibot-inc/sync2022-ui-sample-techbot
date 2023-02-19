@@ -14,7 +14,23 @@ namespace Applibot
     public class CustomImageBase : MonoBehaviour, IMaterialModifier
     {
         [NonSerialized] private Graphic _graphic;
+        [NonSerialized] private Image _image;
         protected Material material;
+        private CanvasScaler _canvasScaler;
+        private int _textureRectId = Shader.PropertyToID("_textureRect");
+
+        protected CanvasScaler canvasScaler
+        {
+            get
+            {
+                if (_canvasScaler == null)
+                {
+                    _canvasScaler = graphic.canvas.GetComponent<CanvasScaler>();
+                }
+
+                return _canvasScaler;
+            }
+        }
 
         public Graphic graphic
         {
@@ -29,30 +45,53 @@ namespace Applibot
             }
         }
 
-
         public Material GetModifiedMaterial(Material baseMaterial)
         {
-            if (!isActiveAndEnabled || _graphic == null)
+            if (!isActiveAndEnabled || graphic == null)
             {
                 return baseMaterial;
             }
 
             UpdateMaterial(baseMaterial);
+            SetAtlasInfo();
             return material;
         }
 
         private void OnDidApplyAnimationProperties()
         {
-            if (!isActiveAndEnabled || _graphic == null)
+            if (!isActiveAndEnabled || graphic == null)
             {
                 return;
             }
 
-            _graphic.SetMaterialDirty();
+            graphic.SetMaterialDirty();
         }
 
         protected virtual void UpdateMaterial(Material baseMaterial)
         {
+        }
+        
+        private void SetAtlasInfo()
+        {
+            if (_image == null)
+            {
+                return;
+            }
+            
+            if (!_image.sprite.packed)
+            {
+                material.DisableKeyword("USE_ATLAS");
+                return;
+            }
+
+            Rect textureRect = _image.sprite.textureRect;
+            Vector4 r = new Vector4(
+                textureRect.x,
+                textureRect.y,
+                textureRect.width,
+                textureRect.height);
+            material.SetVector(_textureRectId, r);
+            material.EnableKeyword("USE_ATLAS");
         }
 
         protected void OnEnable()
@@ -62,7 +101,8 @@ namespace Applibot
                 return;
             }
 
-            _graphic.SetMaterialDirty();
+            _image = graphic as Image;
+            graphic.SetMaterialDirty();
         }
 
         protected void OnDisable()
@@ -74,7 +114,7 @@ namespace Applibot
 
             if (graphic != null)
             {
-                _graphic.SetMaterialDirty();
+                graphic.SetMaterialDirty();
             }
         }
 

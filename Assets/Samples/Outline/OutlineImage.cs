@@ -13,6 +13,8 @@ namespace Applibot
         [ColorUsage(true, true)] [SerializeField]
         private Color _outlineColor = Color.white;
 
+        private Image _image;
+
         [SerializeField] private bool _isStatic = false;
         private int _OutlineColor = Shader.PropertyToID("_OutlineColor");
         private readonly int _SrcFactor = Shader.PropertyToID("_SrcFactor");
@@ -24,17 +26,40 @@ namespace Applibot
             {
                 Shader shader = Shader.Find("Applibot/UI/Outline");
                 material = new Material(shader);
-                material.hideFlags = HideFlags.HideAndDontSave;
             }
 
             material.SetColor(_OutlineColor, _outlineColor);
-            
             material.SetInt(_SrcFactor, (int)BlendMode.SrcAlpha);
             material.SetInt(_DstFactor, (int)BlendMode.OneMinusSrcAlpha);
+
+            if (canvasScaler != null)
+            {
+                Vector2 canvasResolution = canvasScaler.referenceResolution;
+                Vector2 texureSize = Vector2.one;
+
+                if (_image != null && _image.sprite.packed)
+                {
+                    // sprite atlasが使われている場合
+                    Rect r = _image.sprite.textureRect;
+                    texureSize = new Vector2(r.width, r.height);
+                }
+                else
+                {
+                    Texture mainTexture = graphic.mainTexture;
+                    texureSize = new Vector2(mainTexture.width, mainTexture.height);
+                }
+
+                // texture sizeによって線の太さに差が出ないよう、canvasに対しての比率をshaderで掛け合わせる
+                float x = texureSize.x / canvasResolution.x;
+                float y = texureSize.y / canvasResolution.y;
+                material.SetVector("_scaleFactor", new Vector4(x, y));
+            }
         }
 
         private void Awake()
         {
+            _image = graphic as Image;
+
             if (Application.isPlaying == false)
             {
                 return;

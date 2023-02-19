@@ -9,6 +9,8 @@ Shader "Applibot/UI/Outline"
     Properties
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+        _scale ("scale", Float) = 1
+        
         _Color ("Tint", Color) = (1,1,1,1)
 
         _StencilComp ("Stencil Comparison", Float) = 8
@@ -89,6 +91,8 @@ Shader "Applibot/UI/Outline"
             float _UIMaskSoftnessX;
             float _UIMaskSoftnessY;
 
+            float2 _scaleFactor;
+
             // custom properties
             float4 _MainTex_TexelSize;
             float4 _OutlineColor;
@@ -123,10 +127,9 @@ Shader "Applibot/UI/Outline"
 
             fixed4 sobel(v2f IN)
             {
-                float w = _MainTex_TexelSize.z;
-                float h = _MainTex_TexelSize.w;
-                float dx = 1 / w;
-                float dy = 1 / h;
+                // uv座標での1pxは_MainTex_TexelSize.xy。uv atlasであってもこの単位は変わらない
+                float dx = _MainTex_TexelSize.x * _scaleFactor.x;
+                float dy = _MainTex_TexelSize.y * _scaleFactor.y;
                 
                 half4 c00rgba = tex2D(_MainTex, IN.texcoord + half2(-dx, -dy));
                 half c00 = luminance(c00rgba);
@@ -170,7 +173,7 @@ Shader "Applibot/UI/Outline"
             }
            
 
-            fixed4 frag(v2f IN) : SV_Target
+            half4 frag(v2f IN) : SV_Target
             {
                 half4 color = sobel(IN);
 
