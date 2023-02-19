@@ -60,7 +60,7 @@ Shader "Custom/UI/RadialBlur"
             #pragma multi_compile __ UNITY_UI_ALPHACLIP
 
             #include "UnityCG.cginc"
-            #include "../../Commoon/VertexScaleUtil.cginc"
+            #include "../../Commoon/UvUtil.cginc"
 
             int _SampleCount;
             float _Strength;
@@ -111,6 +111,13 @@ Shader "Custom/UI/RadialBlur"
                 float2 center = float2(0.5, 0.5);
                 #if defined(USE_ATLAS)
                     // 中心(0.5, 0.5)の座標が、atlas内ではどこに変化するのか調べる
+                    // _MainTex_TexelSizeの意味は下記です。幅、高さはz、wなの事に注意
+                    // https://docs.unity3d.com/Manual/SL-PropertiesInPrograms.html
+                    // {TextureName}_TexelSize - a float4 property contains texture size information:
+                    // x contains 1.0/width
+                    // y contains 1.0/height
+                    // z contains width
+                    // w contains height
                     center = MeshUVtoAtlasUV(center, _MainTex_TexelSize.zw, _textureRect);
                 #endif
 
@@ -121,8 +128,8 @@ Shader "Custom/UI/RadialBlur"
                 {
                     fixed4 color = tex2D(_MainTex, uv);
                     #if defined(USE_ATLAS)
-                        // パーツ外を参照しないようにする。
-                        // パーツ外ならcolorは0になる
+                        // パーツ外の色を参照しないようにする処理
+                        // IsInner()関数は、内側なら1、外側なら0が返ってくる
                         color *= IsInner(uv, _MainTex_TexelSize.zw, _textureRect);
                     #endif
 
